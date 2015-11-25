@@ -17,10 +17,25 @@ class UsersController < ApplicationController
       render 'new'
     end
   end
+  
+  #USER-PROFILE修正ここから
+  def edit
+    @user = current_user
+  end
+  
+  def update
+    @user = current_user
+    if @user.update_attributes(user_params)
+      redirect_to @user
+    else
+      render 'edit'
+    end
+  end
+  #USER-PROFILE修正ここまで    
 
   private
 
   def user_params
-    params.require(:user).permit(:name, :email, :password, :password_confirmation)
+    params.require(:user).permit(:name, :email, :nickname, :password, :password_confirmation)
   end
 end
