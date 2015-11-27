@@ -21,7 +21,7 @@ class UsersController < ApplicationController
   
   #USER-PROFILE修正ここから
   def edit
-    if @user != current_user
+    if @user != current_user 
       redirect_to root_path
     end
   end
@@ -42,7 +42,7 @@ class UsersController < ApplicationController
   private
 
   def set_user
-    @user = find(params[:id])
+    @user = User.find(params[:id])
   end
   
   def user_params
