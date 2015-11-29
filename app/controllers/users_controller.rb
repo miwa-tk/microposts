@@ -18,6 +18,22 @@ class UsersController < ApplicationController
       render 'new'
     end
   end
+  
+  #followings-followersここから
+  def followings
+    @user = current_user
+    @followings = @user.following_users
+    render 'show_follow'
+  end
+  
+  def follwers
+    @user = current_user
+    @follwers = @user.follower_users
+    render 'show_follow'
+  end
+  
+  
+  #followings-followersここまで
 
   private
 
