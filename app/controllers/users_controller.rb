@@ -22,13 +22,13 @@ class UsersController < ApplicationController
   #followings-followersここから
   def followings
     @user = current_user
-    @followings = @user.following_users
+    @followed = @user.following_users
     render 'show_follow'
   end
   
   def follwers
     @user = current_user
-    @follwers = @user.follower_users
+    @follower = @user.follower_users
     render 'show_follow'
   end
   

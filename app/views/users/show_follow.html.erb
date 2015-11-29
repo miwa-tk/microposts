@@ -8,21 +8,23 @@
     </section>
   </aside>
   <div class="col-md-4">
-
-    <% if @user.following_users.any? %>
-      <h3>Following (<%= @user.following_users.count %>)</h3>
-      <ol class="microposts">
-        <%= render @followings %>
-      </ol>
+ 　　<% if logged_in? %>
+      <% if @user.following_users.any? %>
+        <h3>Following (<%= @user.following_users.count %>)</h3>
+        <ol class="microposts">
+          <%= render @followed %>
+        </ol>
+      <% end %>
     <% end %>
   </div>
   <div class="col-md-4">
-
-    <% if @user.followers_users.any? %>
-      <h3>Followers (<%= @user.follower_users.count %>)</h3>
-      <ol class="microposts">
-        <%= render @followers %>
-      </ol>
-    <% end %>
+ 　　<% if logged_in? %>
+      <% if @user.follower_users.any? %>
+        <h3>Followers (<%= @user.follower_users.count %>)</h3>
+        <ol class="microposts">
+          <%= render @follower %>
+        </ol>
+      <% end %>
+    <% end %>  
   </div>
 </div>
