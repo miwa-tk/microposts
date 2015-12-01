@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_action :set_user, only: [:show, :edit, :update]
   
   def show #追加
     @user = User.find(params[:id])
@@ -36,10 +37,33 @@ class UsersController < ApplicationController
   
   
   #followings-followersここまで
+  #USER-PROFILE修正ここから
+  def edit
+    if @user != current_user 
+      redirect_to root_path
+    end
+  end
+  
+  def update
+    if @user != current_user
+      redirect_to root_path
+    else
+      if @user.update_attributes(user_params)
+        redirect_to @user
+      else
+        render 'edit'
+      end
+    end
+  end
+  #USER-PROFILE修正ここまで    
 
   private
 
+  def set_user
+    @user = User.find(params[:id])
+  end
+  
   def user_params
-    params.require(:user).permit(:name, :email, :password, :password_confirmation)
+    params.require(:user).permit(:name, :email, :nickname, :password, :password_confirmation)
   end
 end

@@ -5,6 +5,15 @@
         <%= gravatar_for @user %>
         <%= @user.name %>
       </h1>
+      <div class="panel panel-info">
+          <div class="panel-heading">
+          Profile
+          </div>
+          <div class="panel-body">
+              <span class="label label-info">Nickname</span>
+              <%= @user.nickname %>
+          </div>
+      </div>
       <%= link_to "followings", followings_user_path %><br>
       <%= link_to "followers", follwers_user_path %>
     </section>
@@ -19,3 +28,4 @@
     <% end %>
   </div>
 </div>
+
