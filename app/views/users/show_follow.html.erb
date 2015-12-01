@@ -5,26 +5,18 @@
         <%= gravatar_for @user %>
         <%= @user.name %>
       </h1>
+      <%= @user.microposts.count %>
     </section>
   </aside>
   <div class="col-md-4">
+  <h3><%= @title %> (<%= @user.following_users.count %>)</h3>
  　　<% if logged_in? %>
-      <% if @user.following_users.any? %>
-        <h3>Following (<%= @user.following_users.count %>)</h3>
+      <% if @users.any? %>
+      <%= @users.inspect %>
         <ol class="microposts">
-          <%= render @followed %>
+          <%= render @users %>
         </ol>
       <% end %>
     <% end %>
-  </div>
-  <div class="col-md-4">
- 　　<% if logged_in? %>
-      <% if @user.follower_users.any? %>
-        <h3>Followers (<%= @user.follower_users.count %>)</h3>
-        <ol class="microposts">
-          <%= render @follower %>
-        </ol>
-      <% end %>
-    <% end %>  
   </div>
 </div>
