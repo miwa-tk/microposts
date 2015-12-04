@@ -36,6 +36,9 @@ class UsersController < ApplicationController
     render 'show_follow'
   end
   
+  def index
+    @users = User.all
+  end
   
   #followings-followersここまで
   #USER-PROFILE修正ここから

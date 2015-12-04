@@ -6,20 +6,20 @@
         <%= gravatar_for @user %>
         <%= @user.name %>
       </h1>
-      <%= @user.microposts.count %>
+      <p>
+      <%= link_to "followings", followings_user_path %><br>
+      <%= link_to "followers", follwers_user_path %><br>
+      <%= link_to "User_oneself", @user %><br>
+      </p>
     </section>
   </aside>
   <div class="col-md-8">
-  <h3><%= @title %> </h3>
-    <% if @title='followings' then %>
-      <%= link_to 'followers',follwers_user_path %>
-    <% elsif @title='followers' then %>
-      <%= link_to 'followings', followings_user_path %>
-    <% end %>
+  <h3><%= @title %> <%= @users.count %> </h3>
+
  　　<% if logged_in? %>
       <% if @users.any? %>
         <ol class="microposts">
-          <%= render @users %>>
+          <%= render @users %>
         </ol>
       <% end %>
     <% end %>

@@ -1,0 +1,9 @@
+<h1>All Users</h1>
+<div class="rows">
+  <div class="col-md-offset-4 col-md-4">
+    <% @users.each do |user| %>
+    <p><%= gravatar_for user, size: 50 %><%= link_to user.name, user %></p>
+    <br>
+    <% end %>
+   </div>
+</div>
