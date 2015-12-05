@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update]
+  before_action :set_page, only: [:index, :show, :edit, :update, :followings, :follwers]
   
   def show #追加
     @user = User.find(params[:id])
@@ -38,6 +39,7 @@ class UsersController < ApplicationController
   
   def index
     @users = User.all
+
   end
   
   #followings-followersここまで
@@ -59,7 +61,9 @@ class UsersController < ApplicationController
       end
     end
   end
-  #USER-PROFILE修正ここまで    
+  #USER-PROFILE修正ここまで
+  
+
 
   private
 
@@ -70,5 +74,11 @@ class UsersController < ApplicationController
   def user_params
     params.require(:user).permit(:name, :email, :nickname, :password, :password_confirmation)
   end
+  
+  def set_page
+        #kaminari追加
+    @users = User.order(:name).page params[:page]
+  end
+    
   
 end

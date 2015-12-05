@@ -5,5 +5,10 @@
     <p><%= gravatar_for user, size: 50 %><%= link_to user.name, user %></p>
     <br>
     <% end %>
-   </div>
+  </div>
+</div>
+<div class="rows">
+  <div class="col-md-offset-4 col-md-4">
+    <%= paginate @users %>
+  </div>
 </div>

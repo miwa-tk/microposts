@@ -35,4 +35,7 @@ class User < ActiveRecord::Base
         following_users.include?(other_user)
     end
     
+    # kaminari設定
+    paginates_per 7
+    
 end
