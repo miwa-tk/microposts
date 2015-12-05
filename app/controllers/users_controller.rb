@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update]
-  before_action :set_page, only: [:index, :show, :edit, :update, :followings, :follwers]
+  before_action :page_params, only: [:index, :show, :followings, :followers]#kaminari追加
   
   def show #追加
     @user = User.find(params[:id])
@@ -75,10 +75,10 @@ class UsersController < ApplicationController
     params.require(:user).permit(:name, :email, :nickname, :password, :password_confirmation)
   end
   
-  def set_page
+  def page_params
         #kaminari追加
-    @users = User.order(:name).page params[:page]
+    @users = User.page(params[:page]).per(7).order(:name)
   end
-    
+
   
 end

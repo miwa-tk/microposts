@@ -37,5 +37,5 @@ class User < ActiveRecord::Base
     
     # kaminari設定
     paginates_per 7
-    
+
 end
