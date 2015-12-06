@@ -5,5 +5,5 @@ class Micropost < ActiveRecord::Base
     
 # kaminari設定
     paginates_per 7
-    max_paginates_per 10
+
 end
