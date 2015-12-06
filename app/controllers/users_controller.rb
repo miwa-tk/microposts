@@ -1,10 +1,11 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update]
-  before_action :page_params, only: [:index, :show, :followings, :followers]#kaminari追加
+
   
   def show #追加
     @user = User.find(params[:id])
     @microposts = @user.microposts.order(created_at: :desc)
+    @microposts = Micropost.page(params[:page])#kaminari追加
   end
   
   def new
@@ -26,6 +27,8 @@ class UsersController < ApplicationController
     @title = "followings"
     @user = User.find(params[:id])
     @users = @user.following_users
+    
+    @users = User.page(params[:page])#kaminari追加
 
     render 'show_follow'
   end
@@ -34,11 +37,16 @@ class UsersController < ApplicationController
     @title = "follwers"
     @user = User.find(params[:id])
     @users = @user.follower_users
+    
+    @users = User.page(params[:page])#kaminari追加
+    
     render 'show_follow'
   end
   
   def index
     @users = User.all
+    
+    @users = User.page(params[:page])#kaminari追加
 
   end
   
@@ -75,10 +83,7 @@ class UsersController < ApplicationController
     params.require(:user).permit(:name, :email, :nickname, :password, :password_confirmation)
   end
   
-  def page_params
-        #kaminari追加
-    @users = User.page(params[:page]).per(7).order(:name)
-  end
+
 
   
 end
