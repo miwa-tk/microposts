@@ -4,8 +4,8 @@ class UsersController < ApplicationController
   
   def show #追加
     @user = User.find(params[:id])
-    @microposts = @user.microposts.order(created_at: :desc)
-    @microposts = Micropost.page(params[:page])#kaminari追加
+    @microposts = @user.microposts.order(created_at: :desc).page(params[:page])#kaminari修正
+
   end
   
   def new
@@ -26,27 +26,22 @@ class UsersController < ApplicationController
   def followings
     @title = "followings"
     @user = User.find(params[:id])
-    @users = @user.following_users
+    @users = @user.following_users.page(params[:page])#kaminari訂正
     
-    @users = User.page(params[:page])#kaminari追加
-
     render 'show_follow'
   end
   
   def follwers
     @title = "follwers"
     @user = User.find(params[:id])
-    @users = @user.follower_users
-    
-    @users = User.page(params[:page])#kaminari追加
+    @users = @user.follower_users.page(params[:page])#kaminari修正
     
     render 'show_follow'
   end
   
   def index
-    @users = User.all
-    
-    @users = User.page(params[:page])#kaminari追加
+    @users = User.all.page(params[:page])#kaminari修正
+
 
   end
   
